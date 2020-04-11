@@ -14,14 +14,14 @@ export class SpotifyService {
     // Create the httpHeaders that spotify needs to work!
     const headers = new HttpHeaders({
       Authorization:
-        'Bearer BQB2faQwiWiCWm3ifw2ubHTB0f0uX-Gkw0KfcOhYXixt_HgXv-OPRVlUwRKpCPNRJ_ijVvnXxFyGfEFIFQfjFzviaJgMT_7cGc6flcieUn6mN2Hx4aNF6JhRG4ZpSGt7MCUswvqM_SprJ9v-vBA',
+        'Bearer BQAgYa0ecL1tAwhtjck-Yl1q18rLK6uyTvBPaeKrYMflOKbp1SHrL6u2lAl-ywnOpfFkGLyr54unrRJGTtpOZq1RetnOGFqqagaLkDu1pTbRR3fNfQkyHXRqpdl8TIjDcjZduud2RD3-z1j9O8k',
     });
-    this.httpClient
-      .get('https://api.spotify.com/v1/browse/new-releases?limit=20', {
+
+    return this.httpClient.get(
+      'https://api.spotify.com/v1/browse/new-releases?limit=20',
+      {
         headers,
-      })
-      .subscribe((data) => {
-        console.log(data);
-      });
+      }
+    );
   }
 }
