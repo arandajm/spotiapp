@@ -6,6 +6,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root',
 })
 export class SpotifyService {
+  token: string =
+    'BQBgjy0CvRZ9DyD8afQ9qgjoKV6i4ZdDrLMPXObaQ5s_iLrzEonLHseW1qQ9wLTsIr157VinByIUywm6hRmI1Gr7LYmZwjdAee-03r29qttQcSKWPbfV5p66dv9Nvt3-s8c2Gwr53HmHPFgVBbU';
   constructor(private httpClient: HttpClient) {
     console.log('Spotify service listo para usarse!');
   }
@@ -13,12 +15,25 @@ export class SpotifyService {
   getNewReleases() {
     // Create the httpHeaders that spotify needs to work!
     const headers = new HttpHeaders({
-      Authorization:
-        'Bearer BQAgYa0ecL1tAwhtjck-Yl1q18rLK6uyTvBPaeKrYMflOKbp1SHrL6u2lAl-ywnOpfFkGLyr54unrRJGTtpOZq1RetnOGFqqagaLkDu1pTbRR3fNfQkyHXRqpdl8TIjDcjZduud2RD3-z1j9O8k',
+      Authorization: `Bearer ${this.token}`,
     });
 
     return this.httpClient.get(
       'https://api.spotify.com/v1/browse/new-releases?limit=20',
+      {
+        headers,
+      }
+    );
+  }
+
+  getArtistsByTerm(term: string) {
+    // Create the httpHeaders that spotify needs to work!
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.token}`,
+    });
+
+    return this.httpClient.get(
+      `https://api.spotify.com/v1/search?q=${term}&type=artist&limit=20`,
       {
         headers,
       }
