@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+// RxJS v6+
+import { map } from 'rxjs/operators';
 
 // provideIn => with this param, no neccesary to import it into the app.module to use it. Angular know about it!
 @Injectable({
@@ -7,7 +9,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class SpotifyService {
   token: string =
-    'BQBgjy0CvRZ9DyD8afQ9qgjoKV6i4ZdDrLMPXObaQ5s_iLrzEonLHseW1qQ9wLTsIr157VinByIUywm6hRmI1Gr7LYmZwjdAee-03r29qttQcSKWPbfV5p66dv9Nvt3-s8c2Gwr53HmHPFgVBbU';
+    'BQAv3Qao9a3v45SAYFP4LcZ5QihYsle__aFUW6v6Kav6Otp8_pHt0jjBNVV9QYd4TaPuPCltLGSVmJ3Ub56NqrjgsaAabfA_3RVZiSRUlay-EIQEqNc0KmzNeX9-lqR0kQy1E8WAE8VY4kB1pE0';
   constructor(private httpClient: HttpClient) {
     console.log('Spotify service listo para usarse!');
   }
@@ -18,12 +20,11 @@ export class SpotifyService {
       Authorization: `Bearer ${this.token}`,
     });
 
-    return this.httpClient.get(
-      'https://api.spotify.com/v1/browse/new-releases?limit=20',
-      {
+    return this.httpClient
+      .get('https://api.spotify.com/v1/browse/new-releases?limit=20', {
         headers,
-      }
-    );
+      })
+      .pipe(map((data) => data['albums'].items));
   }
 
   getArtistsByTerm(term: string) {
@@ -32,11 +33,10 @@ export class SpotifyService {
       Authorization: `Bearer ${this.token}`,
     });
 
-    return this.httpClient.get(
-      `https://api.spotify.com/v1/search?q=${term}&type=artist&limit=20`,
-      {
+    return this.httpClient
+      .get(`https://api.spotify.com/v1/search?q=${term}&type=artist&limit=20`, {
         headers,
-      }
-    );
+      })
+      .pipe(map((data) => data['artists'].items));
   }
 }
