@@ -10,6 +10,7 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 
 // exported RouterModule with the defined routes
 import { APP_ROUTING } from './app.routes';
+import { NoimagePipe } from './pipes/noimage.pipe';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { APP_ROUTING } from './app.routes';
     SearchComponent,
     ArtistaComponent,
     NavbarComponent,
+    NoimagePipe,
   ],
   imports: [BrowserModule, HttpClientModule, APP_ROUTING],
   providers: [],
