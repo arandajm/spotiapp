@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 })
 export class SpotifyService {
   token: string =
-    'BQBBJsgDBaZhevOIoL_PYv8qPuXYI4HytR9Nnna7nmzsgIj2JHiynB3hNQWbm3Tx7SgovbO23TMJIWfq2F4IJt9RTHxGjvlfHWli09FTWVKmrVioi1ThoQk5aIwnQ4jmGCTygwGQpio228OzJMk';
+    'BQCApH1tGK5lM97YxjcrZlAC-1zmfqxYkOEIC3kzpdWgOXngxqu0Ntv9dEiYXGn7V8n2DgBUqC4fo1GMuF3xY8AiPNMGq-h-fEueQ2vGjIuYWO26v7Uc1zG5pqlwSLfZPd7SeLAHYfN2v8C6DBs';
 
   constructor(private httpClient: HttpClient) {
     console.log('Spotify service listo para usarse!');
@@ -39,5 +39,9 @@ export class SpotifyService {
     return this.getQuery(`search?q=${term}&type=artist&limit=20`).pipe(
       map((data) => data['artists'].items)
     );
+  }
+
+  getArtist(id: string) {
+    return this.getQuery(`artists/${id}`);
   }
 }
