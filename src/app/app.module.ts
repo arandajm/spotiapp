@@ -13,6 +13,7 @@ import { APP_ROUTING } from './app.routes';
 import { NoimagePipe } from './pipes/noimage.pipe';
 import { TarjetasComponent } from './components/tarjetas/tarjetas.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { DomSeguroPipe } from './pipes/domseguro.pipe';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { LoadingComponent } from './components/loading/loading.component';
     NoimagePipe,
     TarjetasComponent,
     LoadingComponent,
+    DomSeguroPipe,
   ],
   imports: [BrowserModule, HttpClientModule, APP_ROUTING],
   providers: [],
