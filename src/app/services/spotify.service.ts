@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 })
 export class SpotifyService {
   token: string =
-    'BQCApH1tGK5lM97YxjcrZlAC-1zmfqxYkOEIC3kzpdWgOXngxqu0Ntv9dEiYXGn7V8n2DgBUqC4fo1GMuF3xY8AiPNMGq-h-fEueQ2vGjIuYWO26v7Uc1zG5pqlwSLfZPd7SeLAHYfN2v8C6DBs';
+    'BQADg4hh2Y7ko3u7RTF8RODmEuGh68QXuNXdGLJiag15_Rs5eQ_fJ-y5_vsrtxT4SS4J9RkwlJGsE41QLEygJZcMq6eFbEoG8PzXW2fooejDxFpG70g4AxchW9oGVJ4AquXKWLFULVhWQxAmXa8';
 
   constructor(private httpClient: HttpClient) {
     console.log('Spotify service listo para usarse!');
@@ -43,5 +43,11 @@ export class SpotifyService {
 
   getArtist(id: string) {
     return this.getQuery(`artists/${id}`);
+  }
+
+  getTopTracks(id: string) {
+    return this.getQuery(`artists/${id}/top-tracks?country=us`).pipe(
+      map((data) => data['tracks'])
+    );
   }
 }
