@@ -11,6 +11,7 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 // exported RouterModule with the defined routes
 import { APP_ROUTING } from './app.routes';
 import { NoimagePipe } from './pipes/noimage.pipe';
+import { TarjetasComponent } from './components/tarjetas/tarjetas.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { NoimagePipe } from './pipes/noimage.pipe';
     ArtistaComponent,
     NavbarComponent,
     NoimagePipe,
+    TarjetasComponent,
   ],
   imports: [BrowserModule, HttpClientModule, APP_ROUTING],
   providers: [],
